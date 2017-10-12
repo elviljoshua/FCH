@@ -1,0 +1,14 @@
+{
+	"commands": {
+		"Arrancar": "parts start apache2 mysql && sass --watch --style compressed wp-content/themes/FCH/css/sass/estilos.scss:wp-content/themes/FCH/css/estilos.css",
+		"Sass" : "sass --watch --style compressed wp-content/themes/FCH/css/sass/estilos.scss:wp-content/themes/FCH/css/estilos.css",
+		"Reiniciar": "parts restart apache2 mysql"//,
+		//"Instalar BoxParts": "parts install apache2 php5 mysql phpmyadmin && parts start apache2 mysql && mysqladmin -u root password 'root' && gem install sass && sass --watch --style compressed wp-content/themes/miTema/css/sass/estilos.scss:wp-content/themes/miTema/css/estilos.css"
+	},
+	"preview": {
+		"Index": "http://{{domain}}:3000/",
+		"Administración": "http://{{domain}}:3000/wp-admin",
+		"phpMyAdmin": "http://{{domain}}:3000/phpmyadmin",
+		"Index estático": "http://{{domain}}/"
+	}
+}

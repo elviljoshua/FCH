@@ -1,0 +1,1124 @@
+@import "960.scss";
+@import "normalizacion.scss";
+@import "mixins.scss";
+
+@import url(http://fonts.googleapis.com/css?family=Oxygen:700,400);
+
+$claro: #fff;
+$oscuro: #000;
+$gris_1: #ececec; //FONDO
+$gris_2: #e2e2e2; //PLECAS
+$gris_3: #454546; //TEXTO
+$color_1: #d1be16; //AMARILLO
+$color_2: #004a80; //AZUL
+$color_3: #9e0b0f; //ROJO
+$color_4: #00a99d; //TEAL
+$color_5: #009149; //VERDE
+$color_6: #898989; //GRIS MOSAICOS
+$color_7: #404041; //GRIS OSCURO MOSAICOS
+
+body {
+	font: {
+		family: Oxygen, sans-serif;
+		size: 12px;
+	}
+	background-color: $gris_1;
+	color: $gris_3;
+}
+
+#tooltip {
+	position: fixed;
+	display: none;
+	color: $claro;
+	max-width: 250px;
+	font-size: 10px;
+	padding: 5px 7px;
+	background-color: $color_5;
+	z-index: 3;
+	text-transform: uppercase;
+}
+
+header {
+	position: fixed;
+	display: block;
+	width: 100%;
+	background-color: rgba(0,0,0,0.75);
+	padding-top: 35px;
+	z-index: 2;
+	@include sombra(0, 3px, 10px, rgba(0,0,0,0.25));
+	#escudo-uabc {
+		position: relative;
+		display: inline-block;
+		width: 43px;
+		height: 62px;
+		margin-right: 20px;
+		@include sustituir-imagen('svg/escudo-uabc.svg', 43px, 62px);
+	}
+	#logo {
+		position: relative;
+		display: inline-block;
+		width: 225px;
+		height: 62px;
+		@include sustituir-imagen('svg/logo.svg', 225px, 62px);
+	}
+	> div {
+		@include bloque;
+		padding: 20px 0;
+		background-color: $claro;
+		#contenedor-menu-principal {
+			@include bloque;
+			> div > #menu-principal {
+				position: absolute;
+				display: block;
+				right: 0;
+				bottom: -20px;
+				> div { //CADA UNO DE LOS MENÚS
+					@include inline;
+					margin-left: 20px;
+					&:hover > span {
+						background-color: $color_1;
+						color: $claro;
+					}
+					> span { //BOTON DESENCADENADOR
+						@include inline;
+						padding: 6px 10px 20px 10px;
+						cursor: pointer;
+						font-size: 16px;
+						color: $color_7;
+					}
+					&.alinear-menu-derecha > nav {
+						right: 0;
+					}
+					&#menu-la-facultad > nav:after {
+						@include cover('menus/facultad.png');
+					}
+					&#menu-oferta-educativa > nav:after {
+						@include cover('menus/educacion.png');
+					}
+					&#menu-estudiantes > nav:after {
+						@include cover('menus/estudiantes.png');
+					}
+					&#menu-vinculacion > nav:after {
+						@include cover('menus/vinculacion.png');
+					}
+					> nav { //CONTENEDOR DEL SUBMENÚ
+						position: absolute;
+						display: none;
+						background-color: $gris_1;
+						padding: 17px 15px 117px 15px;
+						@include sombra(0, 4px, 8px, rgba(0,0,0,0.4));
+						> a {
+							@include bloque;
+							white-space: nowrap;
+							font-size: 13px;
+							padding: 3px 5px;
+							color: $color_7;
+							text-decoration: none;
+							&:before {
+								@include inline;
+								content: '>';
+								font-weight: bold;
+								color: $color_5;
+								margin-right: 5px;
+							}
+							&:hover {
+								background-color: $gris_2;
+								color: $oscuro;
+							}
+						}
+						&:after {
+							position: absolute;
+							display: block;
+							content: '';
+							width: 100%;
+							height: 100px;
+							left: 0;
+							bottom: 0;
+						}
+					}
+					&:hover > nav {
+						display: block;
+					}
+				}
+			}
+			
+		}
+	}
+	#enlaces-superiores {
+		position: absolute;
+		display: block;
+		top: 0;
+		right: 10px;
+		cursor: default;
+		> a {
+			position: relative;
+			display: inline-block;
+			width: 30px;
+			height: 30px;
+			margin-left: 5px;
+			vertical-align: middle;
+			-webkit-transform: rotate(0);
+			-moz-transform: rotate(0);
+			transform: rotate(0);
+			@include transicion;
+			&:hover {
+				-webkit-transform: rotate(360deg);
+				-moz-transform: rotate(360deg);
+				transform: rotate(360deg);
+			}
+			> svg {
+				position: relative;
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+			}
+			&:hover svg .fondo,
+			&:hover svg .transparente {
+				fill: $gris_3 !important;
+			}
+			&:hover svg * {
+				fill: $claro;
+				@include transicion;
+			}
+		}
+		> div {
+			@include inline;
+			margin-left: 5px;
+			vertical-align: middle;
+			span { 
+				position: relative;
+				display: inline-block;
+				z-index: 5;
+				width: 30px;
+				height: 30px;
+				background-color: $color_1;
+				@include circulo;
+				@include box-sizing;
+				cursor: pointer;
+				@include transicion;
+				&[data-boton-busqueda] {
+					top: 1px;
+				}
+				svg {
+					width: 30px;
+					height: 30px;
+					> path {
+						@include transicion;
+						-webkit-transform: scale(1);
+						-moz-transform: scale(1);
+						transform: scale(1);
+					}
+				}
+				&:hover {
+					background-color: $gris_3;
+				}
+			}
+			input {
+				position: absolute;
+				display: inline-block;
+				opacity: 0;
+				z-index: 3;
+				background-color: $gris_1;
+				@include box-sizing;
+				width: 30px;
+				height: 33px;
+				border: 1px solid $color_1;
+				right: 0;
+				margin: 0;
+				top: 0;
+				@include transicion;
+			}
+			&.busqueda-activa span {
+				background-color: transparent;
+				path {
+					fill: $gris_3;
+				}
+				-webkit-transform: scale(1.2);
+				-moz-transform: scale(1.2);
+				transform: scale(1.2);
+			}
+			&.busqueda-activa input {
+				width: 411px;
+				opacity: 1;
+			}
+		}
+	}
+}
+
+#contenidos {
+	@include bloque;
+	min-height: 620px;
+	&.contenedor-resultados-busqueda {
+		min-height: 0;
+	}
+}
+
+footer {
+	@include bloque;
+	cursor: default;
+	#menu-pie {
+		@include bloque;
+		> div {
+			@include bloque;
+			background-color: $gris_2;
+			padding: 35px 0 25px;
+			> div {
+				&:first-child {
+					padding-left: 30px;
+				}
+				&:last-child {
+					padding-right: 30px;
+				}
+			}
+			span {
+				@include bloque;
+				font-size: 20px;
+				font-weight: normal;
+				margin: 0 0 10px;
+			}
+			nav {
+				@include bloque;
+				margin-bottom: 10px;
+				> a {
+					@include bloque;
+					font-size: 13px;
+					padding: 3px 0 3px 20px;
+					color: $color_7;
+					text-decoration: none;
+					&:before {
+						@include inline;
+						content: '>';
+						font-weight: bold;
+						color: $color_5;
+						margin-left: -13px;
+						margin-right: 5px;
+					}
+					&:hover {
+						background-color: $gris_1;
+						color: $oscuro;
+					}
+				}
+			}
+		}
+	}
+	#contenedor-blanco {
+		@include bloque;
+		@include sombra(0, -3px, 10px, rgba(0,0,0,0.25));
+		background-color: $claro;
+		height: 200px;
+		@include sustituir-imagen('svg/logo-pie.svg', 181px, 138px);
+	}
+	#contenedor-amarillo {
+		@include bloque;
+		background-color: $color_1;
+		padding: 30px 0;
+		color: $oscuro;
+		#logo-facebook {
+			@include bloque;
+			text-decoration: none;
+			font-size: 14px;
+			margin-bottom: 15px;
+			margin-top: 15px;
+			padding-left: 16px;
+			@include imagen('svg/logo-facebook.svg');
+			backgrond-position: left center;
+			background-repeat: no-repeat;
+			background-size: 10px 19px;
+		}
+		h6 {
+			@include bloque;
+			text-transform: uppercase;
+			font-size: 12px;
+			margin: 0;
+		}
+		#mapa {
+			@include bloque;
+			width: 100%;
+			height: 120px;
+			@include cover('mapa.jpg');
+			margin-top: 20px;
+		}
+		h5 {
+			@include bloque;
+			font-size: 16px;
+			margin: 0;
+		}
+		h4 {
+			@include bloque;
+			font-size: 16px;
+			margin: 0;
+			font-weight: normal;
+		}
+		strong {
+			@include bloque;
+			text-transform: uppercase;
+		}
+		a {
+			@include bloque;
+			font-size: 12px;
+			color: $oscuro;
+			&:hover {
+				color: $color_3;
+			}
+		}
+		span {
+			@include bloque;
+			> span {
+				@include inline;
+				font-weight: bold;
+			}
+		}
+		fieldset {
+			@include bloque;
+			margin: 0 0 13px;
+			border: none;
+			padding: 0;
+		}
+	}
+}
+
+.portada-publicacion {
+	@include bloque;
+	width: 100%;
+	height: 500px;
+	background-color: $gris_2;
+}
+
+.noticia > div {
+	bottom: 67px;
+}
+
+.noticia-principal > div {
+	bottom: 25px;
+}
+
+.noticia, .noticia-principal {
+	text-decoration: none;
+	> p { //TRANSPARENCIA DEGRADADO NEGRO
+		position: absolute;
+		display: block;
+		top: 0;
+		width: 940px;
+		height: 500px;
+		margin: 0;
+		background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(40%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 40%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 40%,rgba(0,0,0,1) 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 40%,rgba(0,0,0,1) 100%); /* IE10+ */
+		background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 40%,rgba(0,0,0,1) 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+	}
+	> div {
+		position: absolute;
+		display: block;
+		left: 25px;
+		max-width: 750px;
+		color: $claro;
+		text-decoration: none;
+		h3 {
+			@include bloque;
+			font-size: 40px;
+			margin: 0;
+			text-transform: uppercase;
+			-webkit-text-shadow: 0 1px 14px $oscuro;
+			-moz-text-shadow: 0 1px 14px $oscuro;
+			text-shadow: 0 1px 14px $oscuro;
+			letter-spacing: -1px;
+		}
+		span {
+			@include bloque;
+			font-size: 18px;
+			margin: 0;
+			-webkit-text-shadow: 0 1px 6px $oscuro;
+			-moz-text-shadow: 0 1px 6px $oscuro;
+			text-shadow: 0 1px 6px $oscuro;
+			font-weight: bold;
+			p {
+				@include bloque;
+				padding: 0;
+				margin: 0;
+				line-height: 26px;
+			}
+		}
+		> div {
+			@include inline;
+			font-weight: bold;
+			font-size: 14px;
+			padding: 10px;
+			background-color: $color_1;
+			color: $color_7;
+			margin-top: 10px;
+			@include sombra(0, 1px, 20px, rgba(0,0,0,0.5));
+			@include transicion();
+		}
+	}
+	&:hover > div > div {
+		background-color: lighten($color_1, 20%);
+	}
+}
+
+.noticia-destacada {
+	@include bloque;
+	overflow: auto;
+	background-color: $claro;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-decoration: none;
+	> * {
+		@include bloque;
+		float: left;
+	}
+	> img {
+		width: 100px;
+		height: 100px;
+		background-color: $gris_2;
+	}
+	> div {
+		width: 360px;
+		padding: 10px 15px;
+		color: $gris_3;
+		h4 {
+			@include bloque;
+			color: $oscuro;
+			margin: 0 0 5px;
+			font-size: 13px;
+		}
+		> div {
+			@include bloque;
+			overflow: hidden;
+			margin: 0;
+			height: 32px;
+			margin-bottom: 6px;
+			p {
+				@include bloque;
+				margin: 0;
+				font-size: 12px;
+			}
+		}
+		span {
+			@include inline;
+			left: 0;
+			font-size: 12px;
+			font-weight: bold;
+			text-transform: uppercase;
+			@include transicion;
+			svg {
+				@include inline;
+				width: 16px;
+				height: 15px;
+				margin-right: 5px;
+				vertical-align: middle;
+				top: -1px;
+				polygon {
+					@include transicion;
+				}
+			}
+		}
+	}
+	&:hover span {
+		color: $color_1;
+		left: 10px;
+		polygon {
+			fill: $color_1;
+		}
+	}
+}
+
+.noticia {
+	@include bloque;
+	> img {
+		@include bloque;
+		width: 100%;
+		height: 500px;
+		margin: 0;
+		border: 0;
+		background-color: $gris_2;
+	}
+	> span {
+		@include bloque;
+		padding: 10px 15px;
+		background-color: $gris_3;
+		div {
+			@include inline;
+			font-size: 18px;
+			font-weight: bold;
+			text-decoration: none;
+			text-transform: uppercase;
+			color: $claro;
+			vertical-align: middle;
+			left: 0;
+			@include transicion;
+			> span {
+				@include inline;
+				vertical-align: middle;
+			}
+			> svg {
+				@include inline;
+				width: 26px;
+				height: 26px;
+				margin-right: 15px;
+				vertical-align: middle;
+			}
+		}
+	}
+	&:hover > span > div {
+		left: 10px;
+	}
+	&.noticia-azul > span {
+		background-color: $color_2;
+	}
+	&.noticia-roja > span {
+		background-color: $color_3;
+	}
+	&.noticia-menta > span {
+		background-color: $color_4;
+	}
+	&.noticia-amarilla > span {
+		background-color: $color_1;
+	}
+}
+
+//PÁGINA SINGLE Y GENERALES
+#cabecera-single {
+	@include bloque;
+	height: 500px;
+	background-color: $gris_2;
+	z-index: 1;
+	cursor: default;
+	@include transicion;
+	> span {
+		position: absolute;
+		display: block;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 230px;
+		h1 {
+			position: absolute;
+			display: block;
+			margin: 0;
+			clear: both;
+			padding: 15px 20px;
+			line-height: 45px;
+			@include transicion;
+			font: {
+				size: 40px;
+				weight: bold;
+			}
+			text-transform: uppercase;
+			-webkit-text-shadow: 0 1px 9px rgba(0,0,0,0.7);
+			-moz-text-shadow: 0 1px 9px rgba(0,0,0,0.7);
+			text-shadow: 0 1px 9px rgba(0,0,0,0.7);
+			bottom: 0;
+			left: 0;
+			color: $claro;
+		}
+	}
+	&.fondo-amarillo {
+		background-color: $color_1;
+	}
+	&.fondo-azul {
+		background-color: $color_2;
+	}
+	&.fondo-rojo {
+		background-color: $color_3;
+	}
+	&.fondo-teal {
+		background-color: $color_4;
+	}
+	&.fondo-verde {
+		background-color: $color_5;
+	}
+	&.fondo-gris {
+		background-color: $color_7;
+	}
+	&.fijar-cabecera {
+		position: fixed;
+		top: -295px;
+		@include sombra(0, 3px, 10px, rgba(0,0,0,0.45));
+		h1 {
+			font-size: 24px;
+			padding: 10px 20px;
+		}
+	}
+	&.cabecera-con-foto {
+		background-color: $gris_2;
+		background-repeat: no-repeat;
+		background-size: cover;
+		> span {
+			background-image: webkit-linear-gradient(transparent,rgba(0,0,0,0.75));
+			background-image: -moz-linear-gradient(transparent,rgba(0,0,0,0.75));
+			background-image: linear-gradient(transparent,rgba(0,0,0,0.75));
+		}
+	}
+}
+
+#contenidos-single {
+	@include bloque;
+	background-color: $claro;
+	padding: 30px 25px;
+	font-size: 14px;
+	min-height: 250px;
+	&.fijar-cabecera {
+		margin-top: 500px;
+	}
+	h1, h2, h3, h4, h5, h6 {
+		@include bloque;
+		clear: both;
+		margin-top: 0;
+		color: $color_7;
+		margin-bottom: 20px;
+		cursor: default;
+	}
+	h1 {
+		font-size: 30px;
+	}
+	h2 {
+		font-size: 24px;
+	}
+	h3 {
+		font-size: 20px;
+	}
+	h4 {
+		font-size: 18px;
+	}
+	h5 {
+		font-size: 16px;
+	}
+	h6 {
+		font-size: 14px;
+	}
+	p {
+		@include bloque;
+		margin: 0 0 15px;
+	}
+	a {
+		color: $color_5;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	img {
+		@include bloque;
+		&.alignnone, &.alignleft, &.alignright {
+			width: 100%;
+			margin: 20px 0;
+		}
+		&.aligncenter {
+			max-width: 100%;
+			margin: 20px auto;
+		}
+	}
+	div.wp-caption {
+		@include bloque;
+		margin: 20px auto;
+		padding: 0;
+		> a {
+			@include bloque;
+			overflow: auto;
+			margin: 0;
+			> img {
+				margin: 0;
+				&.alignnone, &.alignleft, &.alignright {
+					width: 100%;
+					margin: 0;
+				}
+				&.aligncenter {
+					max-width: 100%;
+					margin: 0;
+				}
+			}
+		}
+		> p.wp-caption-text {
+			@include bloque;
+			text-align: center;
+			cursor: default;
+			margin-right: 10px;
+			padding: 10px;
+			background-color: $gris_2;
+			font-size: 12px;
+		}
+	}
+	blockquote {
+		p {
+			@include bloque;
+			margin: 10px 30px 20px;
+		@include inline;
+			margin: 0 0 0 20px;
+			font-size: 20px;
+			font-style: italic;
+			&:before {
+				@include inline;
+				content: '>';
+				font-weight: bold;
+				color: $color_5;
+				margin-left: -15px;
+				margin-right: 5px;
+			}
+		}
+	}
+	ul {
+		list-style: none;
+		padding: 0;
+		li {
+			margin: 0 0 0 40px;
+			font-size: 14px;
+			padding: 0;
+			&:before {
+				@include inline;
+				content: '•';
+				font-weight: bold;
+				color: $color_5;
+				margin-left: -12px;
+				margin-right: 5px;
+			}
+		}
+	}
+	.link-mosaico-rojo,
+	.link-mosaico-azul,
+	.link-mosaico-amarillo,
+	.link-mosaico-gris,
+	.link-mosaico-gris-oscuro,
+	.link-mosaico-verde,
+	.link-mosaico-teal {
+		@include bloque;
+		float: left;
+		width: 31%;
+		margin: 0 2.3% 17px 0;
+		@include box-sizing;
+		p {
+			@include bloque;
+			margin: 0;
+			padding: 0;
+		}
+		a {
+			@include bloque;
+			text-align: left;
+			@include box-sizing;
+			color: $claro;
+			padding: 10px;
+			min-height: 78px;
+			@include transicion;
+			top: 0;
+			font: {
+				size: 14px;
+				weight: bold;
+			}
+			&:hover {
+				text-decoration: none;
+				top: -10px;
+			}
+			span {
+				@include bloque;
+				font-size: 12px;
+				margin-top: 5px;
+				font-weight: normal;
+			}
+		}
+	}
+	.link-mosaico-rojo a {
+		background-color: $color_3;
+	}
+	.link-mosaico-azul a {
+		background-color: $color_2;
+	}
+	.link-mosaico-amarillo a {
+		background-color: $color_1;
+	}
+	.link-mosaico-gris a {
+		background-color: $color_6;
+	}
+	.link-mosaico-gris-oscuro a {
+		background-color: $color_7;
+	}
+	.link-mosaico-verde a {
+		background-color: $color_5;
+	}
+	.link-mosaico-teal a {
+		background-color: $color_4;
+	}
+	.seccion-licenciatura {
+		@include bloque;
+		overflow: auto;
+		margin-bottom: 10px;
+		&.cuerpo-academico {
+			h2 {
+				margin-bottom: 30px;
+			}
+		}
+		.columna-grande, .columna-foto, .columna-mitad {
+			@include bloque;
+			float: left;
+			margin-right: 2%;
+			&.omega {
+				margin-right: 0;
+			}
+		}
+		.columna-grande {
+			width: 69%;
+		}
+		.columna-foto {
+			width: 29%;
+			margin-top: 10px;
+			height: 200px;
+			@include ocultar-texto;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		.columna-mitad {
+			width: 49%;
+		}
+		.alignnone {
+			margin-bottom: 10px;
+			margin-top: 20px;
+			float: left;
+		}
+		.academico {
+			@include bloque;
+			width: 49%;
+			margin-right: 2%;
+			float: left;
+			overflow: auto;
+			margin-bottom: 20px;
+			cursor: default;
+			&:nth-child(odd) {
+				margin-right: 0;
+			}
+			&.coordinador a:after {
+				position: absolute;
+				display: block;
+				font-size: 11px;
+				color: $claro;
+				background-color: $color_5;
+				width: 100%;
+				content: 'Coordinador Académico';
+				text-align: center;
+				bottom: 0;
+				padding: 3px 0;
+				left: 0;
+			}
+			a {
+				@include bloque;
+				width: 29%;
+				margin-right: 2%;
+				float: left;
+				overflow: hidden;
+				img {
+					@include bloque;
+					margin-top: 0;
+					width: 100%;
+					height: auto;
+					margin-bottom: 0;
+					background-color: $gris_2;
+				}
+			}
+			p {
+				@include bloque;
+				margin: 0;
+				width: 69%;
+				float: left;
+				overflow: auto;
+				&:first-of-type {
+					font-size: 18px;
+					color: $oscuro;
+					margin-bottom: 10px;
+				}
+			}
+		}
+		.boton-plan-de-estudios, .boton-contactanos {
+			@include bloque;
+			float: left;
+			width: 49%;
+			color: $claro;
+			font-size: 20px;
+			text-align: center;
+			@include transicion;
+			top: 0;
+			padding: 15px;
+			margin: {
+				top: 10px;
+				bottom: 10px;
+			}
+			&:hover {
+				text-decoration: none;
+				top: -10px;
+			}
+		}
+		.boton-plan-de-estudios {
+			margin-right: 2%;
+			background-color: $color_4;
+		}
+		.boton-contactanos {
+			background-color: $color_2;
+		}
+	}
+	&.resultados-busqueda {
+		margin-top: 0;
+		padding-top: 180px;
+		h2 {
+			strong {
+				color: $color_5;
+			}
+		}
+		.resultado-busqueda {
+			@include bloque;
+			float: left;
+			width: 49%;
+			opacity: 0;
+			min-height: 114px;
+			margin-right: 2%;
+			margin-bottom: 20px;
+			@include box-sizing;
+			padding: 15px;
+			text-decoration: none;
+			color: $claro;
+			font-size: 14px;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center;
+			top: 0;
+			&:nth-child(odd) {
+				margin-right: 0;
+			}
+			&.inicio-aparicion {
+				top: -10px;
+			}
+			&.final-aparicion {
+				@include transicion;
+			}
+			&.amarillo {
+				background-color: $color_1;
+			}
+			&.azul {
+				background-color: $color_2;
+			}
+			&.rojo {
+				background-color: $color_3;
+			}
+			&.teal {
+				background-color: $color_4;
+			}
+			&.verde {
+				background-color: $color_5;
+			}
+			&.gris {
+				background-color: $color_7;
+			}
+			&:hover {
+				top: -10px;
+			}
+			span {
+				position: absolute;
+				display: block;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				padding: 15px;
+				background-color: rgba(0,0,0,0.7);
+			}
+			h3 {
+				color: $claro;
+				font-size: 16px;
+				margin-bottom: 5px;
+				cursor: pointer;
+			}
+			p {
+				margin: 0;
+				max-height: 57px;
+				overflow: hidden;
+			}
+			div {
+				position: absolute;
+				display: block;
+				width: 17px;
+				height: 17px;
+				top: 17px;
+				right: 15px;
+				@include sustituir-imagen('svg/descargar-archivo.svg', 17px, 17px);
+			}
+		}
+	}
+	table {
+		margin: 20px 0 20px;
+		cursor: default;
+		&.aligncenter {
+			margin-left: auto;
+			margin-right: auto;
+		}
+		th {
+			background-color: $color_7;
+			color: $claro;
+			font-weight: normal;
+			font-size: 12px;
+			text-transform: uppercase;
+		}
+		td, th {
+			padding: 10px;
+			text-align: left;
+			a {
+				@include inline;
+				padding: 4px 12px 5px;
+				background-color: $color_5;
+				color: $claro;
+				text-decoration: none;
+				&:hover {
+					text-decoration: none;
+					background-color: darken($color_5, 5%);
+				}
+			}
+		}
+		tr:nth-child(even) {
+			background-color: $gris_1;
+		}
+		tr:nth-child(odd) {
+			background-color: $gris_2;
+		}
+	}
+	#fecha-modificacion {
+		position: absolute;
+		display: inline-block;
+		bottom: 32px;
+		right: 25px;
+		text-transform: uppercase;
+		font-size: 12px;
+		cursor: default;
+	}
+}
+
+.addthis-toolbox {
+	@include bloque;
+	margin: 20px 0 0;
+	clear: both;
+}
+
+/* GOOGLE TRANSLATE BAR */
+
+#google_translate_element {
+	max-width: 500px;
+	background-color: transparent;
+	padding: 5px 0 !important;
+	margin: 0 auto;
+	color: $claro !important;
+	select {
+		@include inline;
+		width: auto;
+		padding: 5px !important;
+	}
+	.goog-te-gadget > div {
+		display: inline-block;
+		margin-right: 10px;
+	}
+	a {
+		color: $claro;
+	}
+	div {
+		color: $claro;
+	}
+}
+
+header {
+	padding-top: 0 !important; 
+}

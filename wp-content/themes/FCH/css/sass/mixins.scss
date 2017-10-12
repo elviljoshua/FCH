@@ -1,0 +1,146 @@
+//CLASES EXTENDIBLES
+@mixin box-sizing {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+@mixin circulo {
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
+
+@mixin borde-redondo($radius) { 
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	border-radius: $radius;
+}
+
+@mixin sombra($x, $y, $blur, $color: rgba(0,0,0,0.7))
+{
+	-webkit-box-shadow: $x $y $blur $color;
+	-moz-box-shadow: $x $y $blur $color;
+	box-shadow: $x $y $blur $color;
+}
+
+@mixin sombra-interior($x, $y, $blur, $color)
+{
+	-webkit-box-shadow: inset $x $y $blur $color;
+	-moz-box-shadow: inset $x $y $blur $color;
+	box-shadow: inset $x $y $blur $color;
+}
+
+@mixin transicion($property: all, $duracion: 0.5s, $aceleracion: ease) {
+	-webkit-transition: $property $duracion $aceleracion;
+	-moz-transition: $property $duracion $aceleracion;
+	-o-transition: $property $duracion $aceleracion;
+	transition: $property $duracion $aceleracion;
+}
+
+@mixin degradado-lineal($origen, $fin) {
+	background-color: $fin;
+	background-image: -moz-linear-gradient($origen, $fin);
+	background-image: -o-linear-gradient($origen, $fin);
+	background-image: -webkit-linear-gradient($origen, $fin);
+	background-image: -ms-linear-gradient($origen, $fin);
+	background-image: linear-gradient($origen, $fin);
+}
+
+@mixin degradado-radial($origen, $fin) {
+	background-color: $fin;
+	background-image: -moz-radial-gradient(circle, $origen, $fin);
+	background-image: -o-radial-gradient(circle, $origen, $fin);
+	background-image: -webkit-radial-gradient(circle, $origen, $fin);
+	background-image: -ms-radial-gradient(circle, $origen, $fin);
+	background-image: radial-gradient(circle, $origen, $fin);
+}
+
+@mixin bloque {
+	position: relative;
+	display: block;
+}
+
+@mixin inline {
+	position: relative;
+	display: inline-block;
+}
+
+@mixin background-size($ancho, $alto) {
+	-webkit-background-size: $ancho $alto;
+	-moz-background-size: $ancho $alto;
+	background-size: $ancho $alto;
+}
+
+@mixin ocultar-texto {
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+@mixin imagen($imagen) {
+	background-image: url('../imagenes/' + $imagen)
+}
+
+@mixin sustituir-imagen($imagen, $ancho, $alto, $alineacion: center) {
+	@include ocultar-texto;
+	background: {
+		repeat: no-repeat;
+		position: $alineacion;
+		image: url('../imagenes/' + $imagen)
+	}
+	@include background-size($ancho, $alto);
+}
+
+@mixin cover($imagen, $ocultar: true) {
+	@if $ocultar == true {
+		@include ocultar-texto;
+	}
+	background: {
+		repeat: no-repeat;
+		position: center;
+		image: url('../imagenes/' + $imagen);
+	}
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+}
+
+@mixin centrar {
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+@mixin zoom($escala: 1.2) {
+	-webkit-transform: scale(1.2, 1.2);
+	-moz-transform: scale(1.2, 1.2);
+	transform: scale(1.2, 1.2);
+}
+
+$es-hdpi: "(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-device-pixel-ratio: 1.5),(min-resolution: 1.5dppx)";
+
+@mixin retina($archivo, $ancho , $alto, $extension: jpg) {
+	background-image: url('../imagenes/' + $archivo + '.' + $extension);
+	@media #{$es-hdpi} { 
+		& { 
+			background-image: url('../imagenes/' + $archivo + '-2x.' + $extension);
+			@include background-size($ancho, $alto);
+		}
+	}
+}
+
+//VARIABLES RESPONSIVIDAD
+$escritorio: 960px;
+$movil: 720px;
+
+@mixin responsivo($width) {
+	@if $width == escritorio {
+		@media only screen and (min-width: $movil + 1) { @content; }
+	}
+	@else if $width == movil {
+		@media only screen and (max-width: $movil) { @content; }
+	}
+}

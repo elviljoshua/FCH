@@ -1,0 +1,1 @@
+<div class="container_12<?php if(get_search_query() != '') echo ' contenedor-resultados-busqueda';?>" id="contenidos">

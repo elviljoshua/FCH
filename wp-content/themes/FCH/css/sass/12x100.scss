@@ -1,0 +1,293 @@
+/*
+    Document   : css/12x100.css
+    Created on : 2014-05-06 12:33 AM
+    Author     : elviljoshua
+    Description: En esta retícula solo se utiliza omega y únicamente en los elementos de segundo nivel.
+    Elastic 12 column grid.
+*/
+
+@media screen and (max-width: 719px)
+{
+	body {
+		min-width: 300px;
+	}
+	
+	.container_12 {
+		position: relative;
+		display: block;
+		width: calc(100% - 20px);
+		margin: 0 10px;
+	}
+	
+	.grid_1,
+	.grid_2,
+	.grid_3,
+	.grid_4,
+	.grid_5,
+	.grid_6,
+	.grid_7,
+	.grid_8,
+	.grid_9,
+	.grid_10,
+	.grid_11,
+	.grid_12 {
+		margin-left: 0;
+		margin-right: 0;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	
+	.container_12 div div {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+
+	.align_center,
+	.align_right {
+		text-align: left;
+	}
+}
+
+@media screen and (min-width: 720px)
+{
+	body {
+		min-width: 720px;
+	}
+
+	.container_12 {
+		width: 96%;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 1200px;
+	}
+
+	.grid_1,
+	.grid_2,
+	.grid_3,
+	.grid_4,
+	.grid_5,
+	.grid_6,
+	.grid_7,
+	.grid_8,
+	.grid_9,
+	.grid_10,
+	.grid_11,
+	.grid_12 {
+		display: inline;
+		float: left;
+		-o-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	
+	.grid_1,
+	.grid_2,
+	.grid_3,
+	.grid_4,
+	.grid_5,
+	.grid_6,
+	.grid_7,
+	.grid_8,
+	.grid_9,
+	.grid_10,
+	.grid_11 {
+		margin-right: 2%;
+	}
+	
+	.container_12 > div:last-of-type {
+		margin-right: 0;
+	}
+	
+	.push_1, .pull_1,
+	.push_2, .pull_2,
+	.push_3, .pull_3,
+	.push_4, .pull_4,
+	.push_5, .pull_5,
+	.push_6, .pull_6,
+	.push_7, .pull_7,
+	.push_8, .pull_8,
+	.push_9, .pull_9,
+	.push_10, .pull_10,
+	.push_11, .pull_11 {
+		position: relative;
+	}
+
+	.container_12 .grid_1 {
+		width: 6.5%;
+	}
+
+	.container_12 .grid_2 {
+		width: 15%;
+	}
+
+	.container_12 .grid_3 {
+		width: 23.5%;
+	}
+
+	.container_12 .grid_4 {
+		width: 32%;
+	}
+
+	.container_12 .grid_5 {
+		width: 40.5%;
+	}
+
+	.container_12 .grid_6 {
+		width: 49%;
+	}
+
+	.container_12 .grid_7 {
+		width: 57.5%;
+	}
+
+	.container_12 .grid_8 {
+		width: 66%;
+	}
+
+	.container_12 .grid_9 {
+		width: 74.5%;
+	}
+
+	.container_12 .grid_10 {
+		width: 83%;
+	}
+	
+	.container_12 .grid_11 {
+		width: 91.5%;
+	}
+	
+	.container_12 .grid_12 {
+		width: 100%;
+	}
+
+	.container_12 .push_1 {
+		left: 8.5%;
+	}
+
+	.container_12 .push_2 {
+		left: 17%;
+	}
+
+	.container_12 .push_3 {
+		left: 25.5%;
+	}
+
+	.container_12 .push_4 {
+		left: 34%;
+	}
+
+	.container_12 .push_5 {
+		left: 42.5%;
+	}
+
+	.container_12 .push_6 {
+		left: 51%;
+	}
+
+	.container_12 .push_7 {
+		left: 59.5%;
+	}
+
+	.container_12 .push_8 {
+		left: 68%;
+	}
+
+	.container_12 .push_9 {
+		left: 76.5%;
+	}
+	
+	.container_12 .push_10 {
+		left: 85%;
+	}
+	
+	.container_12 .push_11 {
+		left: 93.5%;
+	}
+
+	.container_12 .pull_1 {
+		left: -8.5%;
+	}
+
+	.container_12 .pull_2 {
+		left: -17%;
+	}
+
+	.container_12 .pull_3 {
+		left: -25.5%;
+	}
+
+	.container_12 .pull_4 {
+		left: -34%;
+	}
+
+	.container_12 .pull_5 {
+		left: -42.5%;
+	}
+
+	.container_12 .pull_6 {
+		left: -51%;
+	}
+
+	.container_12 .pull_7 {
+		left: -59.5%;
+	}
+
+	.container_12 .pull_8 {
+		left: -68%;
+	}
+
+	.container_12 .pull_9 {
+		left: -76.5%;
+	}
+	
+	.container_12 .pull_10 {
+		left: -85%;
+	}
+	
+	.container_12 .pull_11 {
+		left: -93.5%;
+	}
+}
+
+.alpha {
+	margin-left: 0;
+}
+
+.omega {
+	margin-right: 0;
+}
+
+.clear {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+.clearfix:before,
+.clearfix:after,
+.container_12:before,
+.container_12:after {
+	content: '.';
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	font-size: 0;
+	line-height: 0;
+	width: 0;
+	height: 0;
+}
+
+.clearfix:after,
+.container_12:after {
+	clear: both;
+}
+
+.clearfix,
+.container_12 {
+	zoom: 1;
+}
